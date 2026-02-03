@@ -1,7 +1,7 @@
 from crewai import Agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
-from .tools import MedicalSimulationTools
+from src.tools import MedicalSimulationTools
 
 class MedicalAgents:
     def __init__(self):

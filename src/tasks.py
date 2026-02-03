@@ -1,5 +1,5 @@
 from crewai import Task
-from .schemas import DiagnosticHypothesis, TreatmentOption, MedicationSafetyReport, EthicsRiskEvaluation, CarePathway
+from src.schemas import DiagnosticHypothesis, TreatmentOption, MedicationSafetyReport, EthicsRiskEvaluation, CarePathway
 
 class MedicalTasks:
     def diagnostic_task(self, agent, patient_case) -> Task:

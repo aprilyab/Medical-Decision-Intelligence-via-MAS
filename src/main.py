@@ -1,6 +1,12 @@
+import sys
+import os
 import json
-from .crew import MedicalCrew
-from .config import MEDICAL_DISCLAIMER, APP_NAME
+
+# Add the parent directory to sys.path to allow absolute imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.crew import MedicalCrew
+from src.config import MEDICAL_DISCLAIMER, APP_NAME
 
 def main():
     print("="*60)
@@ -11,7 +17,8 @@ def main():
 
     # Load sample patient case
     try:
-        with open("data/sample_case.json", "r") as f:
+        case_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "sample_case.json")
+        with open(case_path, "r") as f:
             patient_case = json.load(f)
     except FileNotFoundError:
         print("Error: data/sample_case.json not found. Please ensure the project structure is intact.")

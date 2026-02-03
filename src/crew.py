@@ -1,6 +1,6 @@
 from crewai import Crew, Process
-from .agents import MedicalAgents
-from .tasks import MedicalTasks
+from src.agents import MedicalAgents
+from src.tasks import MedicalTasks
 
 class MedicalCrew:
     def __init__(self, patient_case):
