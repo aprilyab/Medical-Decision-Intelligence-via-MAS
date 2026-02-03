@@ -1,13 +1,12 @@
 from crewai import Agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
-from src.tools import MedicalSimulationTools
+from src.tools import simulate_diagnostic_search, check_medication_interactions, calculate_risk_score
 
 class MedicalAgents:
     def __init__(self):
-        self.tools = MedicalSimulationTools()
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash",
+            model="gemini-1.5-flash",
             verbose=True,
             temperature=0.7,
             google_api_key=os.getenv("GOOGLE_API_KEY")
@@ -21,7 +20,7 @@ class MedicalAgents:
             goal="Analyze symptoms and medical history to produce differential diagnoses with confidence scores.",
             backstory="You are an expert diagnostician with decades of experience in internal medicine. "
                       "You specialize in identifying patterns in complex patient data and considering rare conditions.",
-            tools=[self.tools.simulate_diagnostic_search, self.tools.calculate_risk_score],
+            tools=[simulate_diagnostic_search, calculate_risk_score],
             allow_delegation=False,
             verbose=True,
             llm=self.llm
@@ -35,7 +34,7 @@ class MedicalAgents:
             goal="Propose guideline-based treatment options tailored to the patient's specific comorbidities.",
             backstory="You are a clinical pharmacologist and treatment strategist. You focus on evidence-based medicine "
                       "and long-term outcomes, ensuring that treatment plans are comprehensive and effective.",
-            tools=[self.tools.calculate_risk_score],
+            tools=[calculate_risk_score],
             allow_delegation=False,
             verbose=True,
             llm=self.llm
@@ -49,7 +48,7 @@ class MedicalAgents:
             goal="Identify potential drug-drug interactions and contraindications in proposed treatment plans.",
             backstory="You are a senior clinical pharmacist. Your primary concern is patient safety. "
                       "You are known for being meticulous and identifying risks that others might miss.",
-            tools=[self.tools.check_medication_interactions],
+            tools=[check_medication_interactions],
             allow_delegation=False,
             verbose=True,
             llm=self.llm
@@ -63,7 +62,7 @@ class MedicalAgents:
             goal="Simulate how the patient might respond to the proposed care pathway over time.",
             backstory="You specialize in patient-centered care and longitudinal monitoring. "
                       "You predict physiological shifts and potential side effects based on patient history.",
-            tools=[self.tools.calculate_risk_score],
+            tools=[calculate_risk_score],
             allow_delegation=False,
             verbose=True,
             llm=self.llm
