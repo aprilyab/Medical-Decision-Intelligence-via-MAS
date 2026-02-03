@@ -1,6 +1,7 @@
 from crewai import Crew, Process
 from src.agents import MedicalAgents
 from src.tasks import MedicalTasks
+import os
 
 class MedicalCrew:
     def __init__(self, patient_case):
@@ -35,7 +36,15 @@ class MedicalCrew:
             process=Process.hierarchical,
             manager_agent=coordinator,
             memory=True, # MAS Concept: Shared Memory
-            verbose=True
+            verbose=True,
+            embedder={
+                "provider": "google-generativeai",
+                "config": {
+                    "model": "models/embedding-001",
+                    "task_type": "retrieval_document",
+                    "api_key": os.getenv("GOOGLE_API_KEY")
+                }
+            }
         )
 
     def run(self):
