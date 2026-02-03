@@ -1,9 +1,17 @@
 from crewai import Agent
+from langchain_google_genai import ChatGoogleGenerativeAI
+import os
 from .tools import MedicalSimulationTools
 
 class MedicalAgents:
     def __init__(self):
         self.tools = MedicalSimulationTools()
+        self.llm = ChatGoogleGenerativeAI(
+            model="gemini-2.0-flash",
+            verbose=True,
+            temperature=0.7,
+            google_api_key=os.getenv("GOOGLE_API_KEY")
+        )
 
     def diagnostic_reasoning_agent(self) -> Agent:
         # MAS Concept: Autonomy & Specialized Reasoning
@@ -15,7 +23,8 @@ class MedicalAgents:
                       "You specialize in identifying patterns in complex patient data and considering rare conditions.",
             tools=[self.tools.simulate_diagnostic_search, self.tools.calculate_risk_score],
             allow_delegation=False,
-            verbose=True
+            verbose=True,
+            llm=self.llm
         )
 
     def treatment_planning_agent(self) -> Agent:
@@ -28,7 +37,8 @@ class MedicalAgents:
                       "and long-term outcomes, ensuring that treatment plans are comprehensive and effective.",
             tools=[self.tools.calculate_risk_score],
             allow_delegation=False,
-            verbose=True
+            verbose=True,
+            llm=self.llm
         )
 
     def medication_safety_agent(self) -> Agent:
@@ -41,7 +51,8 @@ class MedicalAgents:
                       "You are known for being meticulous and identifying risks that others might miss.",
             tools=[self.tools.check_medication_interactions],
             allow_delegation=False,
-            verbose=True
+            verbose=True,
+            llm=self.llm
         )
 
     def patient_monitoring_agent(self) -> Agent:
@@ -54,7 +65,8 @@ class MedicalAgents:
                       "You predict physiological shifts and potential side effects based on patient history.",
             tools=[self.tools.calculate_risk_score],
             allow_delegation=False,
-            verbose=True
+            verbose=True,
+            llm=self.llm
         )
 
     def ethics_risk_agent(self) -> Agent:
@@ -67,7 +79,8 @@ class MedicalAgents:
                       "You ensure that the care plan respects the patient's quality of life and values.",
             tools=[],
             allow_delegation=False,
-            verbose=True
+            verbose=True,
+            llm=self.llm
         )
 
     def care_coordinator_agent(self) -> Agent:
@@ -80,5 +93,6 @@ class MedicalAgents:
                       "recommendations from different specialists and synthesizing complex information into a clear plan.",
             tools=[],
             allow_delegation=True, # Coordinator can delegate to specialists for clarification
-            verbose=True
+            verbose=True,
+            llm=self.llm
         )
