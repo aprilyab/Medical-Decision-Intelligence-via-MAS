@@ -30,7 +30,7 @@ class MedicalCrew:
 
         # Assemble the Crew
         return Crew(
-            agents=[diagnostician, treatment_planner, safety_expert, monitor, ethicist, coordinator],
+            agents=[diagnostician, treatment_planner, safety_expert, monitor, ethicist],
             tasks=[task_diag, task_treat, task_safety, task_monitor, task_ethics, task_coord],
             process=Process.hierarchical,
             manager_agent=coordinator,
