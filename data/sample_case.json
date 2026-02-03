@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-2024-001",
+  "age": 68,
+  "gender": "Female",
+  "primary_complaint": "Persistent fatigue, shortness of breath, and bilateral ankle swelling.",
+  "symptoms": [
+    {
+      "name": "Dyspnea on exertion",
+      "severity": "moderate",
+      "duration": "3 weeks"
+    },
+    {
+      "name": "Orthopnea",
+      "severity": "mild",
+      "duration": "1 week"
+    },
+    {
+      "name": "Peripheral edema",
+      "severity": "severe",
+      "duration": "2 weeks"
+    }
+  ],
+  "medical_history": [
+    "Type 2 Diabetes Mellitus",
+    "Hypertension",
+    "Chronic Obstructive Pulmonary Disease (COPD)"
+  ],
+  "current_medications": [
+    "Metformin 1000mg BID",
+    "Lisinopril 10mg daily",
+    "Salbutamol inhaler PRN"
+  ],
+  "vitals": {
+    "BP": "155/92 mmHg",
+    "HR": "88 bpm",
+    "SpO2": "93% on room air",
+    "Temp": "36.8°C"
+  }
+}
