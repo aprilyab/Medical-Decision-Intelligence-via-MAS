@@ -5,11 +5,32 @@ from src.tools import simulate_diagnostic_search, check_medication_interactions,
 
 class MedicalAgents:
     def __init__(self):
-        self.llm = ChatGoogleGenerativeAI(
-            model="gemini-1.5-flash",
+        # Load all available keys for rotation to prevent 429 errors
+        self.keys = [
+            os.getenv("GOOGLE_API_KEY_1"),
+            os.getenv("GOOGLE_API_KEY_2"),
+            os.getenv("GOOGLE_API_KEY_3"),
+            os.getenv("GOOGLE_API_KEY_4"),
+            os.getenv("GOOGLE_API_KEY_5"),
+            os.getenv("GOOGLE_API_KEY_6")
+        ]
+        self.keys = [k for k in self.keys if k] # Filter out missing keys
+        self.key_index = 0
+        self.model = os.getenv("AGENT_MODEL", "gemini-2.0-flash")
+
+    def _get_llm(self) -> ChatGoogleGenerativeAI:
+        # Simple round-robin rotation
+        key = self.keys[self.key_index % len(self.keys)]
+        self.key_index += 1
+        
+        # CrewAI internal checks sometimes require the env var to be set
+        os.environ["GOOGLE_API_KEY"] = key
+        
+        return ChatGoogleGenerativeAI(
+            model=self.model,
             verbose=True,
             temperature=0.7,
-            google_api_key=os.getenv("GOOGLE_API_KEY")
+            google_api_key=key
         )
 
     def diagnostic_reasoning_agent(self) -> Agent:
@@ -23,7 +44,7 @@ class MedicalAgents:
             tools=[simulate_diagnostic_search, calculate_risk_score],
             allow_delegation=False,
             verbose=True,
-            llm=self.llm
+            llm=self._get_llm()
         )
 
     def treatment_planning_agent(self) -> Agent:
@@ -37,7 +58,7 @@ class MedicalAgents:
             tools=[calculate_risk_score],
             allow_delegation=False,
             verbose=True,
-            llm=self.llm
+            llm=self._get_llm()
         )
 
     def medication_safety_agent(self) -> Agent:
@@ -51,7 +72,7 @@ class MedicalAgents:
             tools=[check_medication_interactions],
             allow_delegation=False,
             verbose=True,
-            llm=self.llm
+            llm=self._get_llm()
         )
 
     def patient_monitoring_agent(self) -> Agent:
@@ -65,7 +86,7 @@ class MedicalAgents:
             tools=[calculate_risk_score],
             allow_delegation=False,
             verbose=True,
-            llm=self.llm
+            llm=self._get_llm()
         )
 
     def ethics_risk_agent(self) -> Agent:
@@ -79,7 +100,7 @@ class MedicalAgents:
             tools=[],
             allow_delegation=False,
             verbose=True,
-            llm=self.llm
+            llm=self._get_llm()
         )
 
     def care_coordinator_agent(self) -> Agent:
@@ -93,5 +114,5 @@ class MedicalAgents:
             tools=[],
             allow_delegation=True, # Coordinator can delegate to specialists for clarification
             verbose=True,
-            llm=self.llm
+            llm=self._get_llm()
         )

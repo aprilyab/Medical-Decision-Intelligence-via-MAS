@@ -1,39 +1,30 @@
 {
-  "case_id": "CASE-2024-001",
-  "age": 68,
-  "gender": "Female",
-  "primary_complaint": "Persistent fatigue, shortness of breath, and bilateral ankle swelling.",
+  "case_id": "CASE-001",
+  "age": 55,
+  "gender": "Male",
+  "primary_complaint": "Chest discomfort and fatigue",
   "symptoms": [
     {
-      "name": "Dyspnea on exertion",
+      "name": "Chest pain",
       "severity": "moderate",
-      "duration": "3 weeks"
+      "duration": "2 days"
     },
     {
-      "name": "Orthopnea",
+      "name": "Fatigue",
       "severity": "mild",
       "duration": "1 week"
-    },
-    {
-      "name": "Peripheral edema",
-      "severity": "severe",
-      "duration": "2 weeks"
     }
   ],
   "medical_history": [
-    "Type 2 Diabetes Mellitus",
-    "Hypertension",
-    "Chronic Obstructive Pulmonary Disease (COPD)"
+    "Hypertension"
   ],
   "current_medications": [
-    "Metformin 1000mg BID",
-    "Lisinopril 10mg daily",
-    "Salbutamol inhaler PRN"
+    "Amlodipine 5mg daily"
   ],
   "vitals": {
-    "BP": "155/92 mmHg",
-    "HR": "88 bpm",
-    "SpO2": "93% on room air",
-    "Temp": "36.8°C"
+    "BP": "140/90 mmHg",
+    "HR": "82 bpm",
+    "SpO2": "96%",
+    "Temp": "37°C"
   }
 }

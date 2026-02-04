@@ -21,11 +21,17 @@ class DiagnosticHypothesis(BaseModel):
     confidence_score: float = Field(..., ge=0, le=1)
     reasoning: str
 
+class DiagnosticReport(BaseModel):
+    hypotheses: List[DiagnosticHypothesis]
+
 class TreatmentOption(BaseModel):
     name: str
     dosage: Optional[str] = None
     rationale: str
     risks: List[str]
+
+class TreatmentReport(BaseModel):
+    options: List[TreatmentOption]
 
 class MedicationSafetyReport(BaseModel):
     is_safe: bool
@@ -41,6 +47,7 @@ class EthicsRiskEvaluation(BaseModel):
 
 class CarePathway(BaseModel):
     case_id: str
+    executive_summary: str
     final_diagnosis: str
     treatment_plan: List[TreatmentOption]
     safety_notes: List[str]

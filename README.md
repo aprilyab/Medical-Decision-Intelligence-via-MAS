@@ -1,8 +1,5 @@
 # Clinical Decision Support Simulation System (CDSS-MAS)
 
-> [!IMPORTANT]
-> **ETHICAL DISCLAIMER:** This system is a **simulation-only** educational tool designed for academic evaluation. It does **NOT** provide real medical advice, diagnoses, or prescriptions. All clinical data and agent outputs are hypothetical.
-
 ## Project Overview
 CDSS-MAS is a high-fidelity **Multi-Agent System (MAS)** built with **CrewAI** to simulate a multidisciplinary clinical team collaborating on complex patient cases. It demonstrates how autonomous agents can resolve conflicts, model beliefs, and produce emergent care pathways.
 

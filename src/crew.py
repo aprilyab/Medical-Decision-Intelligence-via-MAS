@@ -40,8 +40,7 @@ class MedicalCrew:
             embedder={
                 "provider": "google-generativeai",
                 "config": {
-                    "model": "models/embedding-001",
-                    "task_type": "retrieval_document",
+                    "model": "gemini-embedding-001",
                     "api_key": os.getenv("GOOGLE_API_KEY")
                 }
             }
