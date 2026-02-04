@@ -3,10 +3,6 @@
 
 **Medical Decision Intelligence via MAS** is a clinical decision support simulation driven by a **Multi-Agent System (MAS)** architecture. Instead of relying on a single AI model, this system orchestrates a team of specialized autonomous agents—representing a Diagnostician, Treatment Planner, Safety Auditor, and Ethics Reviewer—to collaborate on complex patient cases.
 
-By simulating the distributed reasoning of a human medical board, the system achieves:
-*   **Reduced Bias**: Through diverse agent perspectives and role-playing.
-*   **Enhanced Safety**: Dedicated agents expressly verify drug interactions and contraindications.
-*   **Comprehensive Care**: Integrated ethical reviews and long-term monitoring simulations.
 
 ##  Features
 
@@ -17,7 +13,7 @@ By simulating the distributed reasoning of a human medical board, the system ach
 - **API Reliability**: Robust error handling with automatic API key rotation.
 - **Secure Design**: Privacy-first architecture suitable for simulated medical data.
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 - Python 3.10 or higher
