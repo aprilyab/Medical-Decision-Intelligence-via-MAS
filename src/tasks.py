@@ -3,7 +3,6 @@ from src.schemas import DiagnosticReport, TreatmentReport, MedicationSafetyRepor
 
 class MedicalTasks:
     def diagnostic_task(self, agent, patient_case) -> Task:
-        # MAS Concept: Distributed Problem Solving
         return Task(
             description=f"Analyze the patient case: {patient_case}. "
                         "Identify the most likely diagnoses and provide confidence scores for each. "
@@ -14,7 +13,6 @@ class MedicalTasks:
         )
 
     def treatment_planning_task(self, agent, patient_case) -> Task:
-        # MAS Concept: Proactivity & Goal-Directed Behavior
         return Task(
             description=f"Based on the patient case: {patient_case}, propose a non-biased, "
                         "guideline-based treatment plan. Consider the patient's existing medications. "
@@ -25,7 +23,6 @@ class MedicalTasks:
         )
 
     def safety_audit_task(self, agent) -> Task:
-        # MAS Concept: Reactivity & Constraint Satisfaction
         return Task(
             description="Review the proposed treatment plan for any drug-drug interactions, "
                         "contraindications, or safety concerns given the patient's history. "
@@ -36,7 +33,6 @@ class MedicalTasks:
         )
 
     def monitoring_simulation_task(self, agent) -> Task:
-        # MAS Concept: Dynamic Feedback Loop
         return Task(
             description="Simulate the patient's physiological response to the proposed treatment over a 30-day period. "
                         "**Format:** concise bullet points.",
@@ -45,7 +41,6 @@ class MedicalTasks:
         )
 
     def ethical_review_task(self, agent) -> Task:
-        # MAS Concept: Social Ability & Value Alignment
         return Task(
             description="Evaluate the proposed care pathway for ethical implications, including patient burden and fairness. "
                         "**Format:** concise bullet points.",
@@ -55,7 +50,6 @@ class MedicalTasks:
         )
 
     def coordination_task(self, agent) -> Task:
-        # MAS Concept: Conflict Resolution & Emergent Consensus
         return Task(
             description="Integrate all specialist findings into a single, unified Care Pathway. "
                         "**CRITICAL: Brevity is mandatory.** Focus only on the most critical actions, "
